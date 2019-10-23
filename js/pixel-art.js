@@ -1,3 +1,6 @@
+$(document).ready();
+
+
 var nombreColores = ['White', 'LightYellow',
   'LemonChiffon', 'LightGoldenrodYellow', 'PapayaWhip', 'Moccasin', 'PeachPuff', 'PaleGoldenrod', 'Bisque', 'NavajoWhite', 'Wheat', 'BurlyWood', 'Tan',
   'Khaki', 'Yellow', 'Gold', 'Orange', 'DarkOrange', 'OrangeRed', 'Tomato', 'Coral', 'DarkSalmon', 'LightSalmon', 'LightCoral', 'Salmon', 'PaleVioletRed',
@@ -35,15 +38,35 @@ colorPersonalizado.addEventListener('change',
 );
 
 
+
+
 var paleta = document.getElementById(".paleta");
 
 var grilla = document.getElementById("grilla-pixeles");
 
-function recorrerColores(){
-  for (i=0; i<nombreColores.length; i++) {
-  var divColor = document.createElement("div");
-  divColor.style.backgroundColor = nombreColores[i];
-  divColor.className = "color-paleta";
-  paleta.appendChild(divColor);
+
+//Recorrer colores y crear paleta
+  for (var i=0; i<nombreColores.length; i++) {
+ $("#paleta").append($("<div>").css("background-color", nombreColores[i]).addClass("color-paleta"));
   }
+
+// Crear Grilla de pixeles
+ for (var i = 0; i<=1750; i++){
+  $("#grilla-pixeles").append($("<div>").addClass("pixelGrilla"));
 }
+
+
+//Paso 1: Seleccioná un color de la paleta y mostralo en el indicador de color
+$(".color-paleta").click(function(){
+  colorSeleccionado = $($(this)).css('background-color');
+  $('#indicador-de-color').fadeOut(250).css('background-color', colorSeleccionado).fadeIn(250);
+});
+
+//Paso 2: Pintá un pixel de la grilla
+$(".pixelGrilla").click(function(){
+ $(this).css("background-color",colorSeleccionado);
+});
+
+wed
+
+
